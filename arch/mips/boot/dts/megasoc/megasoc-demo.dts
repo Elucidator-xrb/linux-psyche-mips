@@ -124,16 +124,40 @@
 			} ;
 		} ;
 
-                i2c1: i2c@1fe50000 {
-                    compatible = "opencores,i2c-ocores";
-                    reg = <0x1fe50000 0x1000>;
-                    interrupts = <7>;
-                    interrupt-parent = <&axi_intc_0>;
-                    clocks = <&socclk>;
-                    clock-frequency = <400000>;
-                    reg-shift = <0>;	/* 8 bit registers */
-                    reg-io-width = <1>;	/* 8 bit read/write */
-                };
+        i2c1: i2c@1fe50000 {
+            compatible = "opencores,i2c-ocores";
+            reg = <0x1fe50000 0x1000>;
+            interrupts = <7>;
+            interrupt-parent = <&axi_intc_0>;
+            clocks = <&socclk>;
+            clock-frequency = <400000>;
+            reg-shift = <0>;	/* 8 bit registers */
+            reg-io-width = <1>;	/* 8 bit read/write */
+        };
+
+		// axi_tft_0: axi_tft@1c061000 {
+		// 	compatible = "xlnx,xps-tft-1.00.a";
+		// 	reg = <0x1c090000 0x1000>;
+		// 		  //<0x1c091000 0x1000>,
+		// 		  //<0x1c092000 0x1000>;
+		// 	xlnx,dcr-splb-slave-if = <0x1>;
+		// 	resolution = <640 480>;
+		// 	virtual-resolution = <1024 480>;
+		// 	phys-size = <1024 512>;
+		// };
+
+		axi_tft_0: axi_tft@1c010000 {
+			compatible = "xlnx,xps-tft-2.00.a";	// accl
+			reg = <0x1c010000 0x1000>; // TFT controller
+				  //<0x1c060000 0x1000>, // framebuffer read
+				  //<0x1c070000 0x1000>, // framebuffer write
+				  //<0x1ff08000 0x4>; // video stream modifier control
+			xlnx,dcr-splb-slave-if = <0x1>;
+			resolution = <640 480>; // actual video size
+			virtual-resolution = <1024 480>; // framebuffersize
+			phys-size = <640 480>; // don't care (physical size of screen)
+		};
+
 	};
 };
 
