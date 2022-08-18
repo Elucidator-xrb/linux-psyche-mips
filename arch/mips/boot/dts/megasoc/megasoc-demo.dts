@@ -29,7 +29,7 @@
 
 	ext: ext {
 		compatible = "fixed-clock";
-		clock-frequency = <66666666>;
+		clock-frequency = <111111111>;
 		#clock-cells = <0>;
 	};
 
@@ -41,13 +41,13 @@
 
 	socclk: socclk {
 		compatible = "fixed-clock";
-		clock-frequency = <166666666>;
+		clock-frequency = <100000000>;
 		#clock-cells = <0>;
 	};
 
 	memory {
 		device_type = "memory";
-		reg = <0x0 0x4000000>;
+		reg = <0x0 0x8000000>;
 	};
 
 	cpuintc: interrupt-controller@0 {
@@ -153,9 +153,9 @@
 				  //<0x1c070000 0x1000>, // framebuffer write
 				  //<0x1ff08000 0x4>; // video stream modifier control
 			xlnx,dcr-splb-slave-if = <0x1>;
-			resolution = <640 480>; // actual video size
+			resolution = <512 480>; // actual video size
 			virtual-resolution = <1024 480>; // framebuffersize
-			phys-size = <640 480>; // don't care (physical size of screen)
+			phys-size = <512 480>; // don't care (physical size of screen)
 		};
 
 	};
